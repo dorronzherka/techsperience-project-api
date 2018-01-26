@@ -57,7 +57,15 @@ app.get('/documents',(req,res) => {
 	})
 });
 
-app.get('/documents/:id',(req,res) => {})
+// ------ Get a Document By id ------
+app.get('/documents/:id',(req,res) => {
+	//Code for handling  getting of document by id
+	Document.findById(req.params.id,(err , doc) => {
+		if(err)
+			console.log(err);
+		res.json(doc);
+	});
+})
 
 
 // ------ Run ------
