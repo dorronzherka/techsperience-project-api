@@ -37,6 +37,7 @@ app.post('/documents',(req,res) => {
 	var doc = new Document();
 	doc.document_number = req.body.document_number;
 	doc.document_title = req.body.document_title;
+	document_description =req.body.document_description
 	doc.document_physicalLocation = req.body.document_physicalLocation
 	doc.document_scannedImages = req.body.document_scannedImages;
 
@@ -73,6 +74,7 @@ app.put('/documents/update/:id',(req ,res) => {
 	var updatedDocument = {
 		document_number : req.body.document_number,
 		document_title : req.body.document_title,
+		document_description : req.body.document_description,
 		document_physicalLocation : req.body.document_physicalLocation,
 		document_scannedImages  : req.body.document_scannedImages
 	}
