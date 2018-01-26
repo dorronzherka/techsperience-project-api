@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended : false}));
 
 // ------ Connecting database with Mongoose ------
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/techsperienceProject',{useMongoClient : true})
+mongoose.connect('mongodb://localhost/techsperienceProject')
 	.then(() =>{
 		console.log("Successfully connected to MongoDB! :)");	
 	}).catch(err => {
@@ -46,6 +46,18 @@ app.post('/documents',(req,res) => {
 		res.json(doc);
 	});
 });
+
+// ------ Get All Documents ------
+app.get('/documents',(req,res) => {
+	//Code for handling  documents  to be returned as JSON
+	Document.find((err,docs) => {
+		if(err)
+			console.log(err);
+		res.json(docs);
+	})
+});
+
+app.get('/documents/:id',(req,res) => {})
 
 
 // ------ Run ------
