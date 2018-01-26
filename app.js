@@ -31,6 +31,21 @@ app.get('/',(req,res) => {
 	res.send("Welcome  To Techsperience Prototype Project API");
 });
 
+// ------ Create Document ------
+app.post('/documents',(req,res) => {
+	//Code for handling creation  of document in MongoDB
+	var doc = new Document();
+	doc.document_number = req.body.document_number;
+	doc.document_title = req.body.document_title;
+	doc.document_physicalLocation = req.body.document_physicalLocation
+	doc.document_scannedImages = req.body.document_scannedImages;
+
+	Document.create(doc,(err,doc) => {
+		if(err)
+			console.log(err);
+		res.json(doc);
+	});
+});
 
 
 // ------ Run ------
