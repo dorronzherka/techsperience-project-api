@@ -59,7 +59,7 @@ app.get('/documents',(req,res) => {
 
 // ------ Get a Document By id ------
 app.get('/documents/:id',(req,res) => {
-	//Code for handling  getting  document by id
+	//Code for handling  to get  document by id
 	Document.findById(req.params.id,(err , doc) => {
 		if(err)
 			console.log(err);
@@ -69,7 +69,7 @@ app.get('/documents/:id',(req,res) => {
 
 // ------ Update Document ------
 app.put('/documents/update/:id',(req ,res) => {
-	//Code for handling updating document
+	//Code for handling  to update document
 	var updatedDocument = {
 		document_number : req.body.document_number,
 		document_title : req.body.document_title,
@@ -91,6 +91,16 @@ app.put('/documents/update/:id',(req ,res) => {
 			res.json(doc);
 		}
 	)
+});
+
+// ------ Remove Document ------
+app.delete('/documents/delete/:id', (req,res) => {
+	//Code for handling to remove a document
+	Document.remove({ _id : req.params.id},(err , result) =>{
+		if(err)
+			console.log(err);
+		res.json({ message : "Document has been deleted!"});
+	})
 });
 
 
