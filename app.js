@@ -59,13 +59,39 @@ app.get('/documents',(req,res) => {
 
 // ------ Get a Document By id ------
 app.get('/documents/:id',(req,res) => {
-	//Code for handling  getting of document by id
+	//Code for handling  getting  document by id
 	Document.findById(req.params.id,(err , doc) => {
 		if(err)
 			console.log(err);
 		res.json(doc);
 	});
-})
+});
+
+// ------ Update Document ------
+app.put('/documents/update/:id',(req ,res) => {
+	//Code for handling updating document
+	var updatedDocument = {
+		document_number : req.body.document_number,
+		document_title : req.body.document_title,
+		document_physicalLocation : req.body.document_physicalLocation,
+		document_scannedImages  : req.body.document_scannedImages
+	}
+
+	Document.findOneAndUpdate(
+		{ 
+			_id : req.params.id
+		},
+		updatedDocument,
+		{
+			new : true
+		}, 
+		(err,doc) =>{
+			if(err)
+				console.log(err);
+			res.json(doc);
+		}
+	)
+});
 
 
 // ------ Run ------
