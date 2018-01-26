@@ -37,8 +37,8 @@ app.post('/documents',(req,res) => {
 	var doc = new Document();
 	doc.document_number = req.body.document_number;
 	doc.document_title = req.body.document_title;
-	document_description =req.body.document_description
-	doc.document_physicalLocation = req.body.document_physicalLocation
+	doc.document_description = req.body.document_description;
+	doc.document_physicalLocation = req.body.document_physicalLocation;
 	doc.document_scannedImages = req.body.document_scannedImages;
 
 	Document.create(doc,(err,doc) => {
